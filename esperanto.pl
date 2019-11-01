@@ -1,95 +1,91 @@
-palavra(Palavra) :-
-   palavra(Propriedades, Lista, []),
-   atom_chars(Palavra, Lista),
+word(Word) :-
+   word(Proprieties, List, []),
+   atom_chars(Word, List),
    nl,
-   write('Propriedades: '),
-   write(Propriedades).
+   write('Properties: '),
+   write(Properties).
 
 
-palavra(Propriedades) --> parte_invariável, parte_variável(Propriedades).
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%    Substantivos     %
-%%%%%%%%%%%%%%%%%%%%%%%
-
-parte_variável([substantivo, nominativo, singular]) --> [o].
-parte_variável([substantivo, nominativo, plural]) --> [o,j].
-parte_variável([substantivo, acusativo, singular]) --> [o,n].
-parte_variável([substantivo, acusativo, plural]) --> [o,j,n].
-
-parte_variável([substantivo, particípioAtivo, passadoPerfeito]) --> [i,n,t,o].
-parte_variável([substantivo, particípioAtivo, presentePerfeito]) --> [a,n,t,o].
-parte_variável([substantivo, particípioAtivo, futuroPerfeito]) --> [o,n,t,o].
-
-parte_variável([substantivo, particípioAtivo, passadoImperfeito]) --> [i,t,o].
-parte_variável([substantivo, particípioAtivo, presenteImperfeito]) --> [a,t,o].
-parte_variável([substantivo, particípioAtivo, futuroImperfeito]) --> [o,t,o].
+word(Properties) --> variable, invariable(Properties).
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%      Advérbios      %
+%    Nouns     %
 %%%%%%%%%%%%%%%%%%%%%%%
 
-parte_variável([advérbioDerivado]) --> [e].
+variable([noun, nominative, singular]) --> [o].
+variable([noun, nominative, plural]) --> [o,j].
+variable([noun, accusative, singular]) --> [o,n].
+variable([noun, accusative, plural]) --> [o,j,n].
 
-parte_variável([advérbioDerivado, particípioAtivo, passadoPerfeito]) --> [i,n,t,e].
-parte_variável([advérbioDerivado, particípioAtivo, presentePerfeito]) --> [a,n,t,e].
-parte_variável([advérbioDerivado, particípioAtivo, futuroPerfeito]) --> [o,n,t,e].
+variable([noun, activeParticiple, passPerfect]) --> [i,n,t,o].
+variable([noun, activeParticiple, presentPerfect]) --> [a,n,t,o].
+variable([noun, activeParticiple, futurePerfect]) --> [o,n,t,o].
 
-parte_variável([advérbioDerivado, particípioAtivo, passadoImperfeito]) --> [i,t,e].
-parte_variável([advérbioDerivado, particípioAtivo, presenteImperfeito]) --> [a,t,e].
-parte_variável([advérbioDerivado, particípioAtivo, futuroImperfeito]) --> [o,t,e].
+variable([noun, activeParticiple, passImperfect]) --> [i,t,o].
+variable([noun, activeParticiple, presentImperfect]) --> [a,t,o].
+variable([noun, activeParticiple, futureImperfect]) --> [o,t,o].
 
 %%%%%%%%%%%%%%%%%%%%%%%
-%      Adjetivos      %
+%      Adverbs      %
 %%%%%%%%%%%%%%%%%%%%%%%
 
-parte_variável([adjetivo, nominativo, singular]) --> [a].
-parte_variável([adjetivo, nominativo, plural]) --> [a,j].
-parte_variável([adjetivo, acusativo, singular]) --> [a,n].
-parte_variável([adjetivo, acusativo, plural]) --> [a,j,n].
+variable([advérbioDerivado]) --> [e].
 
-parte_variável([adjetivo, particípioAtivo, passadoPerfeito]) --> [i,n,t,a].
-parte_variável([adjetivo, particípioAtivo, presentePerfeito]) --> [a,n,t,a].
-parte_variável([adjetivo, particípioAtivo, futuroPerfeito]) --> [o,n,t,a].
+variable([derivativeAdverb, activeParticiple, passPerfect]) --> [i,n,t,e].
+variable([derivativeAdverb, activeParticiple, presentPerfect]) --> [a,n,t,e].
+variable([derivativeAdverb, activeParticiple, futurePerfect]) --> [o,n,t,e].
 
-parte_variável([adjetivo, particípioAtivo, passadoImperfeito]) --> [i,t,a].
-parte_variável([adjetivo, particípioAtivo, presenteImperfeito]) --> [a,t,a].
-parte_variável([adjetivo, particípioAtivo, futuroImperfeito]) --> [o,t,a].
+variable([derivativeAdverb, activeParticiple, passImperfect]) --> [i,t,e].
+variable([derivativeAdverb, activeParticiple, presentImperfect]) --> [a,t,e].
+variable([derivativeAdverb, activeParticiple, futureImperfect]) --> [o,t,e].
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%      Adjectives      %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+variable([adjective, nominative, singular]) --> [a].
+variable([adjective, nominative, plural]) --> [a,j].
+variable([adjective, accusative, singular]) --> [a,n].
+variable([adjective, accusative, plural]) --> [a,j,n].
+
+variable([adjective, activeParticiple, passPerfect]) --> [i,n,t,a].
+variable([adjective, activeParticiple, presentPerfect]) --> [a,n,t,a].
+variable([adjective, activeParticiple, futurePerfect]) --> [o,n,t,a].
+
+variable([adjective, activeParticiple, passImperfect]) --> [i,t,a].
+variable([adjective, activeParticiple, presentImperfect]) --> [a,t,a].
+variable([adjective, activeParticiple, futureImperfect]) --> [o,t,a].
 
 %%%%%%%%%%%%%%%%%%%%%%
-%       Verbos       %
+%       Verbs       %
 %%%%%%%%%%%%%%%%%%%%%%
 
-parte_variável([verbo, presentePerfeito, indicativo]) --> [a,s]. 
-parte_variável([verbo, passadoPerfeito, indicativo]) --> [i,s]. 
-parte_variável([verbo, futuroPerfeito, indicativo]) --> [o,s]. 
+variable([verb, passPerfect, indicative]) --> [i,s]. 
+variable([verb, presentPerfect, indicative]) --> [a,s]. 
+variable([verb, futurePerfect, indicative]) --> [o,s]. 
 
-parte_variável([verbo, presenteImperfeito, indicativo]) --> [a,d,a,s]. 
-parte_variável([verbo, passadoImperfeito, indicativo]) --> [a,d,i,s]. 
-parte_variável([verbo, futuroImperfeito, indicativo]) --> [a,d,o,s]. 
+variable([verb, passImperfect, indicative]) --> [a,d,i,s]. 
+variable([verb, presentImperfect, indicative]) --> [a,d,a,s]. 
+variable([verb, futureImperfect, indicative]) --> [a,d,o,s]. 
 
-parte_variável([verbo, infinitivo]) --> [i].
+variable([verb, infinitive]) --> [i].
 
-parte_variável([verbo, condicional]) --> [u,s]. 
+variable([verb, conditional]) --> [u,s]. 
 
-parte_variável([verbo, imperativo]) --> [u]. 
+variable([verb, imperative]) --> [u]. 
 
 %%%%%%%%%%%%%%%%%%
-% Itens Lexicais %
+% Lexical Items %
 %%%%%%%%%%%%%%%%%%
 
-parte_invariável --> [a,m].
-parte_invariável --> [e,s,t].
-parte_invariável --> [v,i,r].
-parte_invariável --> [l,i,b,r].
-parte_invariável --> [r,a,p,i,d].
-parte_invariável --> [k,o,r].
-parte_invariável --> [d,o,m].
-parte_invariável --> [a,m].
-parte_invariável --> [b,e,s,t].
-parte_invariável --> [b,o,n].
-parte_invariável --> [l,e,r,n].
-
-
-
-
+invariable --> [a,m].
+invariable --> [e,s,t].
+invariable --> [v,i,r].
+invariable --> [l,i,b,r].
+invariable --> [r,a,p,i,d].
+invariable --> [k,o,r].
+invariable --> [d,o,m].
+invariable --> [a,m].
+invariable --> [b,e,s,t].
+invariable --> [b,o,n].
+invariable --> [l,e,r,n].
